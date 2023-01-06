@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+         #
+#    By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 15:39:39 by sayar             #+#    #+#              #
-#    Updated: 2022/10/20 21:20:31 by zkasmi           ###   ########.fr        #
+#    Updated: 2022/10/26 16:25:07 by sayar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,15 @@ CC = cc
 
 FLAGS = -Wall -Werror -Wextra
 
-SRC =	map_parsing/colors_parse.c\
-		map_parsing/parser.c\
-		map_parsing/parsing_errors.c\
-		map_parsing/map_parse_utils_1.c\
-		map_parsing/map_parse_utils.c\
-		map_parsing/map_parse.c\
-		map_parsing/textures_parse.c\
+SRC =	map_parsing/array_func.c\
+		map_parsing/check_map_elem.c\
+		map_parsing/export_utils.c\
+		map_parsing/ft_get_map.c\
+		map_parsing/check_map.c\
+		map_parsing/error.c\
+		map_parsing/ft_export.c\
+		map_parsing/parse.c\
+		map_parsing/parse_colors.c\
 		mandatory/errors.c\
 		mandatory/horizontal.c\
 		mandatory/init.c\
@@ -37,25 +39,27 @@ SRC =	map_parsing/colors_parse.c\
 		gnl/get_next_line.c\
 		gnl/get_next_line_utils.c\
 
-SRC_B =	bonus/errors.c\
-		bonus/horizontal.c\
-		bonus/init.c\
-		bonus/main.c\
-		bonus/mini_map.c\
-		bonus/mini_map_utils.c\
-		bonus/mouse.c\
-		bonus/movements.c\
-		bonus/rays.c\
-		bonus/render3d.c\
-		bonus/textures.c\
-		bonus/vertical.c\
-		map_parsing/colors_parse.c\
-		map_parsing/parser.c\
-		map_parsing/parsing_errors.c\
-		map_parsing/map_parse_utils_1.c\
-		map_parsing/map_parse_utils.c\
-		map_parsing/map_parse.c\
-		map_parsing/textures_parse.c\
+SRC_B =	bonus/errors_bonus.c\
+		bonus/horizontal_bonus.c\
+		bonus/init_bonus.c\
+		bonus/main_bonus.c\
+		bonus/mini_map_bonus.c\
+		bonus/mini_map_utils_bonus.c\
+		bonus/mouse_bonus.c\
+		bonus/movements_bonus.c\
+		bonus/rays_bonus.c\
+		bonus/render3d_bonus.c\
+		bonus/textures_bonus.c\
+		bonus/vertical_bonus.c\
+		map_parsing/array_func.c\
+		map_parsing/check_map_elem.c\
+		map_parsing/export_utils.c\
+		map_parsing/ft_get_map.c\
+		map_parsing/check_map.c\
+		map_parsing/error.c\
+		map_parsing/ft_export.c\
+		map_parsing/parse.c\
+		map_parsing/parse_colors.c\
 		gnl/get_next_line.c\
 		gnl/get_next_line_utils.c\
 
@@ -70,7 +74,7 @@ all : ${NAME}
 .PHONY : all clean fclean re
 
 libft/libft.a:
-	make -C libft
+	make bonus -C libft
 
 $(PREFIX) :
 	@mkdir -p $(PREFIX)
@@ -79,14 +83,14 @@ $(PREFIX) :
 	@mkdir -p $(PREFIX)/gnl
 	@mkdir -p $(PREFIX)/bonus
 
-${NAME} : libft/libft.a mandatory/cub3d.h gnl/get_next_line.h $(PREFIX) ${OBJ}
-	${CC} ${FLAGS} ${OBJ} libft/libft.a -lmlx -framework OpenGL -framework AppKit -g -o ${NAME}
+${NAME} : libft/libft.a mandatory/cub3d.h $(PREFIX) ${OBJ}
+	${CC} ${FLAGS} ${OBJ} libft/libft.a -lmlx -framework OpenGL -framework AppKit  -o ${NAME}
 
-bonus : ${NAME} libft/libft.a bonus/cub3d_bonus.h gnl/get_next_line.h $(PREFIX) ${OBJ_B}
-	${CC} ${FLAGS} ${OBJ_B} libft/libft.a -lmlx -framework OpenGL -framework AppKit -g -o ${NAME_B}
+bonus : ${NAME} libft/libft.a bonus/cub3d_bonus.h $(PREFIX) ${OBJ_B}
+	${CC} ${FLAGS} ${OBJ_B} libft/libft.a -lmlx -framework OpenGL -framework AppKit -o ${NAME_B}
 
 $(PREFIX)%.o: %.c mandatory/cub3d.h bonus/cub3d_bonus.h
-	$(CC) ${FLAGS} -g -c -o $@ $<
+	$(CC) ${FLAGS} -c -o $@ $<
 
 clean :
 	rm -rf ${OBJ}

@@ -6,31 +6,61 @@
 /*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 19:09:13 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 20:43:37 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/25 21:03:29 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	*char_to_int(t_data *data)
+{
+	static int	arr[6];
+	int			i;
+	int			j;
+
+	i = 0;
+	while (i < 3)
+	{
+		if (i == 0)
+			arr[i] = ft_atoi(data->parse->f[0] + 1);
+		else
+			arr[i] = ft_atoi(data->parse->f[i]);
+		i++;
+	}
+	j = 0;
+	while (j < 3)
+	{
+		if (j == 0)
+			arr[i] = ft_atoi(data->parse->c[0] + 1);
+		else
+			arr[i] = ft_atoi(data->parse->c[j]);
+		i++;
+		j++;
+	}
+	return (arr);
+}
+
 void	draw_floor_ceilling(t_data *d)
 {
 	int	x;
 	int	y;
+	int	*arr;
 
 	x = 0;
+	arr = char_to_int(d);
 	while (x < WIN_W)
 	{
 		y = 0;
 		while (y < WIN_H / 2)
 		{
 			d->main_img.addr[y * WIN_W + x] = \
-				rgba(d->parse->cc[0], d->parse->cc[1], d->parse->cc[2]);
+				rgba(arr[3], arr[4], arr[5]);
 			y++;
 		}
 		while (y < WIN_H)
 		{
 			d->main_img.addr[y * WIN_W + x] = \
-				rgba(d->parse->fc[0], d->parse->fc[1], d->parse->fc[2]);
+				rgba(arr[0], arr[1], arr[2]);
 			y++;
 		}
 		x++;
@@ -44,7 +74,7 @@ void	print_walls(int y, int x, t_data *d, char direction)
 			d->wall_text[0].addr[d->text_offy * TILE_SIZE + d->text_offx];
 	if (direction == 'N')
 		d->main_img.addr[y * WIN_W + x] = \
-			d->wall_text[0].addr[d->text_offy * TILE_SIZE + d->text_offx];
+			d->wall_text[1].addr[d->text_offy * TILE_SIZE + d->text_offx];
 	if (direction == 'S')
 		d->main_img.addr[y * WIN_W + x] = \
 			d->wall_text[2].addr[d->text_offy * TILE_SIZE + d->text_offx];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayar <ayar@student.1337.ma>                +#+  +:+       +#+        */
+/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:58:20 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/07/28 15:52:38 by ayar             ###   ########.fr       */
+/*   Updated: 2022/10/22 13:24:40 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+size_t	ft_strcspn(char *str, char *charset);
+size_t	ft_strspn(const char *str, char *charset);
+int		ft_strcmp(char *s1, char *s2);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *s1, const void *s2, size_t n);

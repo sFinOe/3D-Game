@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err.c                                              :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 19:19:49 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/07/29 17:59:14 by sayar            ###   ########.fr       */
+/*   Updated: 2022/10/25 12:13:10 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_char(char **str)
 
 void	ft_free(t_data *dt)
 {
+	mlx_destroy_window(dt->mlx, dt->win);
 	free(dt->rays->wallhitx);
 	free(dt->rays->wallhity);
 	free(dt->rays->distance);
@@ -35,16 +36,15 @@ void	ft_free(t_data *dt)
 	free(dt->rays->foundwall_v);
 	free(dt->rays->foundwall_h);
 	free(dt->rays->washit);
-	free_char(dt->cube);
 	free(dt->wall_text);
 	free(dt->player);
 	free(dt->rays);
-	free(dt->parse->cc);
-	free(dt->parse->fc);
 	free(dt->parse->ea_path);
 	free(dt->parse->we_path);
 	free(dt->parse->so_path);
 	free(dt->parse->no_path);
 	free(dt->parse);
+	ft_free_array(dt->parse->f);
+	ft_free_array(dt->parse->c);
 	free(dt);
 }

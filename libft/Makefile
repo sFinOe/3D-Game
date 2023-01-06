@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zkasmi <zkasmi@student.42.fr>              +#+  +:+       +#+         #
+#    By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 11:11:14 by zkasmi            #+#    #+#              #
-#    Updated: 2021/12/26 19:47:49 by zkasmi           ###   ########.fr        #
+#    Updated: 2022/10/26 13:05:21 by sayar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -50,6 +50,9 @@ ft_memcmp.c\
 ft_putstr_fd.c\
 ft_strlcpy.c\
 ft_strtrim.c\
+ft_strcmp.c\
+ft_strcspn.c\
+ft_strspn.c\
 
 SRC2 = ft_lstclear.c\
 ft_lstadd_back.c\
@@ -68,13 +71,13 @@ all: $(NAME)
 
 %.o: %.c libft.h
 			${CC} -c ${CFLAGS} -o $@ $<
-			
+
 $(NAME): ${OBJS}
 		@ar -rc ${NAME} ${OBJS}
-		
+
 bonus:	${OBJS} ${OBJS2}
 		@ar -rc ${NAME} ${OBJS} ${OBJS2}
-			
+
 .PHONY: all clean fclean bonus
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:04:04 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 20:49:12 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/24 20:26:11 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	h_distance(double h_nextyinter, double h_nextxinter, t_data *dt, int i)
 		if (is_wall_at(dt->x_check, dt->y_check, dt) == 0)
 		{
 			dt->rays->foundwall_h[i] = true;
-			dt->rays->h_wallhitx = h_nextxinter;
-			dt->rays->h_wallhity = h_nextyinter;
+			dt->rays->h_wallhitx = --h_nextxinter;
+			dt->rays->h_wallhity = --h_nextyinter;
 			break ;
 		}
 		else

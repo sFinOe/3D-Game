@@ -6,7 +6,7 @@
 /*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 17:16:26 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 20:44:31 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/26 14:34:22 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ int	main(int ac, char **av)
 {
 	t_data	*img;
 
-	if (ac == 1)
+	if (ac == 1 || ac > 2)
+	{
+		write(2, "Error\nUsage : ./Cub3d [map file]\n", 33);
 		exit(1);
+	}
 	img = malloc(sizeof(t_data));
-	img->player = malloc(sizeof(t_Player));
-	img->rays = malloc(sizeof(t_rays));
-	img->wall_text = malloc(sizeof(t_img) * 4);
 	img->parse = NULL;
-	ft_cube(av[1], img->parse, img);
-	img->cube = img->parse->map;
+	img->parse = ft_cube(av[1], 0, NULL);
+	if (!img->parse)
+		return (1);
 	img->s = img->parse->map;
 	count_map(img);
 	init(img);

@@ -6,7 +6,7 @@
 /*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 19:15:19 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 20:37:59 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/21 16:51:54 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	v_distance(double v_nextyinter, double v_nextxinter, t_data *dt, int i)
 	while ((v_nextxinter >= 0 && v_nextxinter <= dt->win_w)
 		&& (v_nextyinter >= 0 && v_nextyinter <= dt->win_h))
 	{
-		dt->y_check = v_nextyinter;
 		dt->x_check = v_nextxinter;
+		dt->y_check = v_nextyinter;
 		if (dt->rays->israyleft[i])
 			dt->x_check--;
 		if (is_wall_at(dt->x_check, dt->y_check, dt) == 0)
 		{
 			dt->rays->foundwall_v[i] = true;
-			dt->rays->v_wallhitx = v_nextxinter;
-			dt->rays->v_wallhity = v_nextyinter;
+			dt->rays->v_wallhitx = --v_nextxinter;
+			dt->rays->v_wallhity = --v_nextyinter;
 			break ;
 		}
 		else

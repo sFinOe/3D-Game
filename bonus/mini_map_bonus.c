@@ -85,7 +85,8 @@ void	put_in_map(char **s, t_data *img)
 		{
 			if (s[img->mapi][img->mapj] == '1')
 				draw_mini_map(img, '1');
-			else if (s[img->mapi][img->mapj] == '0')
+			else if (s[img->mapi][img->mapj] == '0'
+				|| ft_strchr("SWNE", s[img->mapi][img->mapj]))
 				draw_mini_map(img, '0');
 			img->mapj++;
 			img->xi += 8;

@@ -6,7 +6,7 @@
 /*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 19:13:12 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 20:52:49 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/25 16:04:28 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void	load_wall(t_data *d)
 	d->wall_text[3].mlx_img = \
 		mlx_xpm_file_to_image(d->mlx, \
 	d->parse->we_path, &tab[6], &tab[7]);
+	if (!d->wall_text[0].mlx_img || !d->wall_text[1].mlx_img
+		|| !d->wall_text[2].mlx_img || !d->wall_text[3].mlx_img)
+		display("Error: Texture\n");
 	img_to_array(d);
 }
 
@@ -56,4 +59,12 @@ int	mlx_data(t_data *img)
 {
 	move_player(img);
 	return (0);
+}
+
+double	normilize_angle(double angle)
+{
+	angle = remainder(angle, (2 * M_PI));
+	if (angle < 0)
+		angle += (2 * M_PI);
+	return (angle);
 }

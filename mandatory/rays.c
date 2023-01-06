@@ -6,7 +6,7 @@
 /*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 19:08:03 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 20:42:25 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/25 21:11:39 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,7 @@ void	bool_distance(t_data *dt, double h_distance, double v_distance, int i)
 	else
 		dt->rays->distance[i] = v_distance;
 	if (v_distance < h_distance)
-	{
 		dt->rays->washit[i] = true;
-	}
-	else
-		dt->rays->washit[i] = false;
-	if (v_distance < h_distance)
-	{
-		dt->rays->washit[i] = true;
-	}
 	else
 		dt->rays->washit[i] = false;
 }

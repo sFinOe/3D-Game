@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/23 14:00:20 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/07/24 10:50:33 by sayar            ###   ########.fr       */
+/*   Created: 2022/10/22 13:16:31 by sayar             #+#    #+#             */
+/*   Updated: 2022/10/23 15:33:12 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "libft.h"
 
-int	mouse(int x, int y, t_data *dt)
+int	ft_strcmp(char *s1, char *s2)
 {
-	static int	old_x;
+	unsigned int	i;
 
-	(void)y;
-	if (x <= WIN_W && x >= 0 && y <= WIN_H && y >= 0 && x < old_x)
-		dt->player->rotationangle -= 3 * (M_PI / 180);
-	if (x >= 0 && x <= WIN_W && y <= WIN_H && y >= 0 && x > old_x)
-		dt->player->rotationangle += 3 * (M_PI / 180);
-	old_x = x;
-	return (0);
+	i = 0;
+	if (!s1 || !s2)
+		return (23);
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

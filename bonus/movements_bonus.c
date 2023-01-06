@@ -6,7 +6,7 @@
 /*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:00:20 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 20:57:54 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/25 17:20:37 by zkasmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	move_player(t_data *d)
 	double	y_inc;
 
 	d->player->rotationangle = normilize_angle(d->player->rotationangle);
-	x_inc = cos(d->player->rotationangle) * d->player->up_move \
-		+ sin(d->player->rotationangle) * d->player->right_move;
-	y_inc = sin(d->player->rotationangle) * d->player->up_move - \
-	cos(d->player->rotationangle) * d->player->right_move;
-	if (d->up_right == 1)
+	x_inc = cos(d->player->rotationangle) * d->player->move \
+		+ sin(d->player->rotationangle) * d->player->direction_move;
+	y_inc = sin(d->player->rotationangle) * d->player->move - \
+	cos(d->player->rotationangle) * d->player->direction_move;
+	if (d->right_arr == 1)
 		d->player->rotationangle += d->player->rotationspeed;
-	if (d->up_left == 1)
+	if (d->left_arr == 1)
 		d->player->rotationangle -= d->player->rotationspeed;
 	if (is_wall_at(d->player->x + x_inc, d->player->y, d))
 		d->player->x += x_inc;
@@ -46,33 +46,33 @@ int	move_position(int keycode, t_data *dt)
 		exit(0);
 	}
 	if (keycode == UP)
-		dt->player->up_move = MOVESPEED;
+		dt->player->move = MOVESPEED;
 	if (keycode == DOWN)
-		dt->player->up_move = -MOVESPEED;
+		dt->player->move = -MOVESPEED;
 	if (keycode == RIGHT_ARR)
-		dt->up_right = 1;
+		dt->right_arr = 1;
 	if (keycode == LEFT_ARR)
-		dt->up_left = 1;
+		dt->left_arr = 1;
 	if (keycode == RIGHT)
-		dt->player->right_move = -MOVESPEED;
+		dt->player->direction_move = -MOVESPEED;
 	if (keycode == LEFT)
-		dt->player->right_move = MOVESPEED;
+		dt->player->direction_move = MOVESPEED;
 	return (0);
 }
 
 int	key_release(int keycode, t_data *img)
 {
 	if (keycode == RIGHT_ARR)
-		img->up_right = 0;
+		img->right_arr = 0;
 	if (keycode == LEFT_ARR)
-		img->up_left = 0;
+		img->left_arr = 0;
 	if (keycode == UP)
-		img->player->up_move = 0;
+		img->player->move = 0;
 	if (keycode == DOWN)
-		img->player->up_move = 0;
+		img->player->move = 0;
 	if (keycode == RIGHT)
-		img->player->right_move = 0;
+		img->player->direction_move = 0;
 	if (keycode == LEFT)
-		img->player->right_move = 0;
+		img->player->direction_move = 0;
 	return (0);
 }

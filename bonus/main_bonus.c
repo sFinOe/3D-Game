@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkasmi <zkasmi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: sayar <sayar@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 17:16:26 by zkasmi            #+#    #+#             */
-/*   Updated: 2022/10/20 21:02:27 by zkasmi           ###   ########.fr       */
+/*   Updated: 2022/10/26 16:22:21 by sayar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		exit(1);
 	img = malloc(sizeof(t_data));
-	img->player = malloc(sizeof(t_Player));
-	img->rays = malloc(sizeof(t_rays));
-	img->wall_text = malloc(sizeof(t_img) * 4);
-	ft_cube(av[1], img->parse, img);
-	img->cube = img->parse->map;
+	img->parse = NULL;
+	img->parse = ft_cube(av[1], 0, NULL);
+	if (!img->parse)
+		return (1);
 	img->s = img->parse->map;
 	count_map(img);
 	init(img);
